@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               return Column(
                 children: [
                   const SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Expanded(
                     child: makeList(snapshot),
@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
     // 리스트 아이템 사이에 widget 구현 가능.
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      scrollDirection: Axis.horizontal,
+      scrollDirection: Axis.vertical,
       itemCount: snapshot.data.length!, // 몇 개의 데이터를 로딩할건지
       itemBuilder: (context, index) {
         // 사용자가 보고 있는 데이터만 build
@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
         );
       },
       separatorBuilder: (context, index) => const SizedBox(
-        width: 40,
+        height: 40,
       ),
     );
   }

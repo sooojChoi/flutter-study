@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test1/nomad/WebToonApp/screens/home_screen.dart';
+import 'package:test1/nomad/WebtoonApp/screens/NavigationBar.dart';
 
 void main() {
   runApp(const MyWebtoonApp());
@@ -10,8 +10,8 @@ class MyWebtoonApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
+    return const MaterialApp(
+      home: NavigationBarScreen(),
     );
   }
 }

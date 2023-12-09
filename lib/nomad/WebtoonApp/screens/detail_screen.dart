@@ -21,10 +21,12 @@ class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
   late SharedPreferences prefs;
+
   bool isLiked = false;
 
   Future initPrefs() async {
     prefs = await SharedPreferences.getInstance();
+    // 좋아요를 눌렀는지 확인하기 위함
     final likedToons = prefs.getStringList('likedToons');
     if (likedToons != null) {
       if (likedToons.contains(widget.id) == true) {
@@ -56,7 +58,8 @@ class _DetailScreenState extends State<DetailScreen> {
       }
       await prefs.setStringList('likedToons', likedToons);
       setState(() {
-        isLiked != isLiked;
+        isLiked = !isLiked;
+        debugPrint(isLiked.toString());
       });
     }
   }
@@ -150,7 +153,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       ],
                     );
                   }
-                  return const Text("...");
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 },
               ),
               const SizedBox(
@@ -171,7 +176,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       ],
                     );
                   }
-                  return Container();
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 },
               )
             ],

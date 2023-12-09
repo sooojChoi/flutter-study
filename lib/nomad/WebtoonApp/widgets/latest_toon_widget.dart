@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test1/nomad/WebtoonApp/screens/latest_screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -32,7 +33,21 @@ class _LatestToonState extends State<LatestToon> {
     }
   }
 
-  deleteWidget() {}
+  deleteWidget() async {
+    SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+
+    // 최근 본 웹툰 데이터를 저장하기 위함
+    var latedToons = prefs.getStringList('latedToons');
+    if (latedToons != null) {
+      latedToons.remove(widget.webtoonId);
+      prefs.setStringList('latedToons', latedToons);
+    }
+
+    prefs.remove(widget.webtoonId);
+    prefs.remove("${widget.webtoonId}-episodeId");
+    prefs.remove("${widget.webtoonId}-time");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +85,10 @@ class _LatestToonState extends State<LatestToon> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
-                              onPressed: deleteWidget,
+                              onPressed: () {
+                                deleteWidget();
+                                Navigator.pop(context);
+                              },
                               child: const Text(
                                 '예',
                                 style: TextStyle(

@@ -37,31 +37,18 @@ class _LatestToonState extends State<LatestToon> {
 
   deleteWidget() async {
     widget.deleteItem(widget.webtoonId);
-
-    // SharedPreferences prefs;
-    // prefs = await SharedPreferences.getInstance();
-
-    // // 최근 본 웹툰 데이터를 저장하기 위함
-    // var latedToons = prefs.getStringList('latedToons');
-    // if (latedToons != null) {
-    //   latedToons.remove(widget.webtoonId);
-    //   prefs.setStringList('latedToons', latedToons);
-    // }
-
-    // prefs.remove(widget.webtoonId);
-    // prefs.remove("${widget.webtoonId}-episodeId");
-    // prefs.remove("${widget.webtoonId}-time");
   }
 
   @override
   Widget build(BuildContext context) {
     var newWebtonTitle = widget.toonTitle;
     var newEpisodeTitle = widget.episodeTitle;
-    if (widget.episodeTitle.length > 19) {
-      newEpisodeTitle = "${widget.episodeTitle.substring(0, 19)}...";
+
+    if (widget.toonTitle.length > 11) {
+      newWebtonTitle = "${widget.toonTitle.substring(0, 11)}...";
     }
-    if (widget.toonTitle.length > 15) {
-      newWebtonTitle = "${widget.toonTitle.substring(0, 15)}...";
+    if (widget.episodeTitle.length > 15) {
+      newEpisodeTitle = "${widget.episodeTitle.substring(0, 15)}...";
     }
 
     return GestureDetector(

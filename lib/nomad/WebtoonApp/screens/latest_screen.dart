@@ -15,6 +15,24 @@ class _LatestScreenState extends State<LatestScreen> {
   Future<dynamic> webtoons = ApiService.getLatestToons();
   bool isDeleteType = false;
 
+  deleteItem(webtoonId) async {
+    SharedPreferences prefs;
+    prefs = await SharedPreferences.getInstance();
+
+    // 최근 본 웹툰 데이터를 저장하기 위함
+    var latedToons = prefs.getStringList('latedToons');
+    if (latedToons != null) {
+      latedToons.remove(webtoonId);
+      prefs.setStringList('latedToons', latedToons);
+    }
+
+    prefs.remove(webtoonId);
+    prefs.remove("$webtoonId-episodeId");
+    prefs.remove("$webtoonId-time");
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     webtoons = ApiService.getLatestToons();
@@ -110,6 +128,7 @@ class _LatestScreenState extends State<LatestScreen> {
             webtoonId: webtoon.webtoonId,
             episodeId: webtoon.episodeId,
             deleteType: isDeleteType,
+            deleteItem: deleteItem,
           );
         },
         separatorBuilder: (context, index) => const SizedBox(

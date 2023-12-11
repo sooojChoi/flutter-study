@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 class LatestToon extends StatefulWidget {
   final String toonTitle, episodeTitle, thumb, webtoonId, episodeId;
   final bool deleteType;
+  final Function deleteItem;
 
   const LatestToon({
     super.key,
@@ -15,6 +16,7 @@ class LatestToon extends StatefulWidget {
     required this.webtoonId,
     required this.episodeId,
     required this.deleteType,
+    required this.deleteItem,
   });
 
   @override
@@ -34,19 +36,21 @@ class _LatestToonState extends State<LatestToon> {
   }
 
   deleteWidget() async {
-    SharedPreferences prefs;
-    prefs = await SharedPreferences.getInstance();
+    widget.deleteItem(widget.webtoonId);
 
-    // 최근 본 웹툰 데이터를 저장하기 위함
-    var latedToons = prefs.getStringList('latedToons');
-    if (latedToons != null) {
-      latedToons.remove(widget.webtoonId);
-      prefs.setStringList('latedToons', latedToons);
-    }
+    // SharedPreferences prefs;
+    // prefs = await SharedPreferences.getInstance();
 
-    prefs.remove(widget.webtoonId);
-    prefs.remove("${widget.webtoonId}-episodeId");
-    prefs.remove("${widget.webtoonId}-time");
+    // // 최근 본 웹툰 데이터를 저장하기 위함
+    // var latedToons = prefs.getStringList('latedToons');
+    // if (latedToons != null) {
+    //   latedToons.remove(widget.webtoonId);
+    //   prefs.setStringList('latedToons', latedToons);
+    // }
+
+    // prefs.remove(widget.webtoonId);
+    // prefs.remove("${widget.webtoonId}-episodeId");
+    // prefs.remove("${widget.webtoonId}-time");
   }
 
   @override

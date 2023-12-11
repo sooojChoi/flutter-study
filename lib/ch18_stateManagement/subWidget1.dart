@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test1/ch18_stateManagement/InheritedWidget.dart';
 import 'package:test1/ch18_stateManagement/parentWidget.dart';
 
 class SubWidget1 extends StatelessWidget {
@@ -27,6 +28,8 @@ class SubWidget1 extends StatelessWidget {
     var text = state?.num.toString() ?? "empty";
     var heart = state?.heart ?? false;
 
+    int count = MyInheritedWidget.of(context)!.count;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -47,7 +50,16 @@ class SubWidget1 extends StatelessWidget {
                 ),
                 heart
                     ? const Icon(Icons.lightbulb)
-                    : const Icon(Icons.lightbulb_outline)
+                    : const Icon(Icons.lightbulb_outline),
+                const SizedBox(
+                  width: 15,
+                ),
+                Text(
+                  count.toString(),
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                )
               ],
             ),
             IconButton(

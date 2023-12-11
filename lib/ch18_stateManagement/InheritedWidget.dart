@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyInheritedWidget extends InheritedWidget {
-  int count = 0;
+  int count = 100;
 
   MyInheritedWidget(child, {super.key}) : super(child: child);
 

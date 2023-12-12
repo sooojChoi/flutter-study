@@ -22,12 +22,21 @@ class SubWidget1 extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          "counter: ${counter.count.toString()}",
-          style: const TextStyle(
-            fontSize: 20,
-          ),
-        ),
+        // Text(
+        //   "counter: ${counter.count.toString()}",
+        //   style: const TextStyle(
+        //     fontSize: 20,
+        //   ),
+        // ),
+        // Consumer를 사용하면 Provider.of로 상태에 접근하지 않아도 된다.
+        Consumer<Counter>(builder: (context, model, child) {
+          return Text(
+            model.count.toString(),
+            style: const TextStyle(
+              fontSize: 20,
+            ),
+          );
+        }),
         ElevatedButton(
           onPressed: onPressed,
           child: const Text(
@@ -38,7 +47,16 @@ class SubWidget1 extends StatelessWidget {
           ),
         ),
         Text(
-          "int: $numberInt, double: $numberDouble, text: $text",
+          "int: $numberInt, double: $numberDouble",
+          style: const TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Text(
+          "text: $text",
           style: const TextStyle(
             fontSize: 20,
           ),
@@ -53,7 +71,17 @@ class SubWidget1 extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-        )
+        ),
+        Selector<Mode, String>(
+            builder: (context, data, child) {
+              return Text(
+                data,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              );
+            },
+            selector: (context, model) => model.mode),
       ],
     ));
   }

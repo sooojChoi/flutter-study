@@ -17,8 +17,20 @@ class Counter with ChangeNotifier {
   }
 }
 
+class ProxyTest with ChangeNotifier {
+  int sum = 0;
+
+  ProxyTest(this.sum);
+
+  void changeSum(value) {
+    sum = value;
+    notifyListeners();
+  }
+}
+
 class Mode with ChangeNotifier {
   String mode = 'a';
+  String selectorTest = 'hehe';
 
   void changeMode() {
     if (mode == "a") {
@@ -54,6 +66,25 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<Mode>.value(
               value: Mode(),
             ),
+            // 다른 상태값을 참조하여 상태를 리턴하는 ProxyProvider
+            ProxyProvider<Counter, ProxyTest>(
+              update: (context, value, previous) {
+                // 상탯값만 갱신
+                if (previous != null) {
+                  previous.sum = value._count + 100;
+                  return previous;
+                }
+                // 새로운 객체 생성
+                else {
+                  return ProxyTest(value._count + 100);
+                }
+              },
+            ),
+            // Future 데이터로 상태 등록
+            FutureProvider<String>(
+                create: (context) =>
+                    Future.delayed(const Duration(seconds: 4), () => "second"),
+                initialData: "first"),
           ],
           child: const SubWidget1(),
         ),

@@ -39,6 +39,9 @@ class ParentWidgetState extends State<ParentWidget> {
       builder: (context) => Container(),
     ));
 
+    // of 함수로 접근할 수 있다.
+    MyInheritedWidget.of(context)!.count;
+
     return Scaffold(
       body: Center(
         child: Column(

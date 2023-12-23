@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test1/ch18_stateManagement/InheritedWidget.dart';
 import 'package:test1/ch18_stateManagement/parentWidget.dart';
 
 void main() {
@@ -10,6 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: ParentWidget());
+    return MaterialApp(
+      home: MyInheritedWidget(const ParentWidget()),
+      //ParentWidget(),
+    );
   }
 }

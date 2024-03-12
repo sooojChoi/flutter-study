@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test1/ch14_navigator/screens/NavigationBarExample.dart';
-import 'package:test1/ch14_navigator/screens/fourthScreen.dart';
-import 'package:test1/ch14_navigator/screens/homeScreen.dart';
-import 'package:test1/ch14_navigator/screens/secondScreen.dart';
-import 'package:test1/ch14_navigator/screens/thirdScreen.dart';
 
 void main() {
   runApp(const MyNavigatorApp());

@@ -5,7 +5,6 @@ import 'package:test1/nomad/WebtoonApp/models/webtoon_detail_model.dart';
 import 'package:test1/nomad/WebtoonApp/models/webtoon_episode_model.dart';
 import 'package:test1/nomad/WebtoonApp/services/api_service.dart';
 import 'package:test1/nomad/WebtoonApp/widgets/episode_widget.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class DetailScreen extends StatefulWidget {
   final String title, thumb, id;

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test1/nomad/WebtoonApp/screens/latest_screen.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class LatestToon extends StatefulWidget {

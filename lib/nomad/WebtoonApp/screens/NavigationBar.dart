@@ -14,7 +14,7 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
 
   final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    LatestScreen(),
+    const LatestScreen(),
   ];
 
   onItemTapped(int index) {
